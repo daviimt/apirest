@@ -1,19 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Offers;
+use App\Cicles;
 use Validator;
 
 class OfferController extends Controller { 
     public $successStatus = 200;
 
     public function index() {
-        $offers = Offers::all();
-
-        return response()->json(['offer' => $offers->toArray()], $this->successStatus);
+        $offers = Offers::paginate(10);
+        $cicles = Cicles::all();
+        return view('userViews.offers')->with('offers', $offers)->with('cicles', $cicles);
     }
 
     public function store(Request $request) {
@@ -36,14 +36,15 @@ class OfferController extends Controller {
         return response()->json(['offer' => $offers->toArray()], $this->successStatus);
     }
 
-    public function show($id) {
-        $offers = Offers::find($id);
+    public function show() {
+        $offers = Offers::all();
+
 
         if (is_null($offers)) {
             return response()->json(['error' => $validator->errors()], 401);
         }
 
-        return response()->json(['offer' => $offers->toArray()], $this->successStatus);
+        return view('userViews.userView', compact('offers'));
     }
 
     public function update(Request $request, Offers $offer) {
