@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Auth::routes();
+
+
+Route::get('offers/show/','OfferController@index')->name('offers.index');
+
+Route::get('articles/show/','ArticleController@index')->name('articles.index');
