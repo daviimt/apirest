@@ -10,7 +10,4 @@ class Offers extends Model
 
     protected $fillable=['id','title','description','date_max','num_candidates','cicle_id','deleted'];
 
-    public function apply(){
-    	return $this->hasMany(Applied::class);
-    }
 }
