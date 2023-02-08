@@ -12,6 +12,7 @@ class ProductController extends Controller {
 
     public function index() {
         $offers = Cicles::all();
+
         return response()->json(['offer' => $offers->toArray()], $this->successStatus);
     }
 

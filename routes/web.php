@@ -1,5 +1,5 @@
-
 <?php
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,15 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-// Auth::routes(['verify' => true]);
-
-
-
-
-Auth::routes();
-
-
-Route::get('offers/show/','API\OfferController@index')->name('offers.index');
-
-Route::get('articles/show/','API\ArticleController@index')->name('articles.index');
-

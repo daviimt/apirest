@@ -5,16 +5,15 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Articles;
-use App\Cicles;
 use Validator;
 
 class ArticleController extends Controller { 
     public $successStatus = 200;
 
     public function index() {
-        $articles = Articles::paginate(10);
-        $cicles = Cicles::all();
-        return view('userViews.articles')->with('articles', $articles)->with('cicles', $cicles);
+        $articles = Articles::all();
+
+        return response()->json(['article' => $articles->toArray()], $this->successStatus);
     }
 
     public function store(Request $request) {
